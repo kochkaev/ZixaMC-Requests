@@ -202,7 +202,7 @@ object RequestsBotCommands {
     suspend fun onTelegramNewCommand(msg: TgMessage): Boolean {
         if (msg.chat.id < 0) return true
         if (msg.from == null) return false
-        val user = SQLUser.get(msg.from.id)?:return false
+        val user = SQLUser.get(msg.from?.id?:return false)?:return false
         if (user.isRestricted) return false
         return RequestsLogic.newRequest(user)
     }

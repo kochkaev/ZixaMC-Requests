@@ -33,10 +33,10 @@ object RequestsBotUpdateManager {
                     RequestStatus.CREATING -> if (it.messageId == (msg.replyToMessage?.messageId?:return).toLong()) {
                         val newMessage: TgMessage
                         if (it.nickname == null) {
-                            if ((msg.text?.length ?: return) !in 3..16 || !msg.text.matches(Regex("[a-zA-Z0-9_]+"))) {
+                            if ((msg.text?.length ?: return) !in 3..16 || !msg.text!!.matches(Regex("[a-zA-Z0-9_]+"))) {
                                 newMessage = bot.sendMessage(
                                     chatId = msg.chat.id,
-                                    text = config.user.lang.creating.wrongNickname.formatLang("nickname" to msg.text),
+                                    text = config.user.lang.creating.wrongNickname.formatLang("nickname" to msg.text!!),
                                     replyParameters = TgReplyParameters(
                                         msg.messageId
                                     ),
@@ -45,10 +45,10 @@ object RequestsBotUpdateManager {
                                         config.user.lang.inputField.enterNickname.ifEmpty { null }
                                     )
                                 )
-                            } else if (!user.canTakeNickname(msg.text)) {
+                            } else if (!user.canTakeNickname(msg.text!!)) {
                                 newMessage = bot.sendMessage(
                                     chatId = msg.chat.id,
-                                    text = config.user.lang.creating.takenNickname.formatLang("nickname" to msg.text),
+                                    text = config.user.lang.creating.takenNickname.formatLang("nickname" to msg.text!!),
                                     replyParameters = TgReplyParameters(
                                         msg.messageId
                                     ),
@@ -60,7 +60,7 @@ object RequestsBotUpdateManager {
                             } else {
                                 newMessage = bot.sendMessage(
                                     chatId = msg.chat.id,
-                                    text = config.user.lang.creating.needRequestText.formatLang("nickname" to msg.text),
+                                    text = config.user.lang.creating.needRequestText.formatLang("nickname" to msg.text!!),
                                     replyParameters = TgReplyParameters(
                                         msg.messageId
                                     ),
