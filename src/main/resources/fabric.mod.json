@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "zixamc-requests",
+  "version": "${version}",
+  "name": "ZixaMC-Requests",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "Apache-2.0",
+  "icon": "assets/zixamc-requests/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "ru.kochkaev.zixamc.requests.ZixamcRequests"
+    ]
+  },
+  "mixins": [
+    "zixamc-requests.mixins.json",
+    {
+      "config": "zixamc-requests.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-language-kotlin": ">=${kotlin_loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
