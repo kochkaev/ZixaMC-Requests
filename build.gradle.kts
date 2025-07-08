@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "2.2.0"
-    id("fabric-loom") version "1.7.1"
+    id("fabric-loom") version "1.10.1"
     id("maven-publish")
 }
 
@@ -29,7 +29,6 @@ loom {
     mods {
         register("zixamc-requests") {
             sourceSet("main")
-            sourceSet("client")
         }
     }
 }
@@ -41,6 +40,21 @@ repositories {
     // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
+    mavenLocal()
+    maven("https://maven.nucleoid.xyz/") { name = "Nucleoid" }
+    exclusiveContent {
+        forRepository {
+            maven ("https://api.modrinth.com/maven") { name = "Modrinth" }
+        }
+        filter {
+            includeGroup("maven.modrinth")
+        }
+    }
+    maven("https://jitpack.io")
+    maven("https://masa.dy.fi/maven")
+    maven("https://oss.sonatype.org/content/repositories/snapshots")
+//    maven ("https://dl.bintray.com/palantir/releases")
+    mavenCentral()
 }
 
 dependencies {
@@ -51,6 +65,7 @@ dependencies {
     modImplementation("net.fabricmc:fabric-language-kotlin:${project.property("kotlin_loader_version")}")
 
     modImplementation("net.fabricmc.fabric-api:fabric-api:${project.property("fabric_version")}")
+    modImplementation("ru.kochkaev:zixamc.api:${project.property("zixamc_api_version")}")
 }
 
 tasks.processResources {

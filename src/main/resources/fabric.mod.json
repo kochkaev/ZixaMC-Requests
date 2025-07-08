@@ -11,16 +11,10 @@
   "environment": "server",
   "entrypoints": {
     "main": [
-      "ru.kochkaev.zixamc.requests.ZixamcRequests"
+      "ru.kochkaev.zixamc.requests.ZixaMCRequests"
     ]
   },
-  "mixins": [
-    "zixamc-requests.mixins.json",
-    {
-      "config": "zixamc-requests.client.mixins.json",
-      "environment": "client"
-    }
-  ],
+  "mixins": [],
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric-language-kotlin": ">=${kotlin_loader_version}",
