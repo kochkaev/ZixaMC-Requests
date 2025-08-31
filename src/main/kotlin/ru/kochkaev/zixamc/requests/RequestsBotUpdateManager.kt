@@ -8,6 +8,7 @@ import ru.kochkaev.zixamc.requests.RequestsBot.bot
 import ru.kochkaev.zixamc.requests.RequestsBot.config
 import ru.kochkaev.zixamc.api.telegram.model.*
 import ru.kochkaev.zixamc.api.sql.SQLUser
+import ru.kochkaev.zixamc.api.sql.callback.CallbackCanExecute
 import ru.kochkaev.zixamc.api.sql.callback.CallbackData
 import ru.kochkaev.zixamc.api.sql.callback.TgCBHandlerResult
 import ru.kochkaev.zixamc.api.sql.callback.TgMenu
@@ -85,11 +86,21 @@ object RequestsBotUpdateManager {
                                         display = config.user.lang.button.confirmSending,
                                         type = "requests",
                                         data = RequestCallback(Operations.SEND_REQUEST),
+                                        canExecute = CallbackCanExecute(
+                                            statuses = null,
+                                            users = listOf(user.id),
+                                            display = "",
+                                        ),
                                     ),
                                     SQLCallback.of(
                                         display = config.user.lang.button.cancelRequest,
                                         type = "requests",
                                         data = RequestCallback(Operations.CANCEL_SENDING_REQUEST),
+                                        canExecute = CallbackCanExecute(
+                                            statuses = null,
+                                            users = listOf(user.id),
+                                            display = "",
+                                        ),
                                     ),
                                 )))
                             )
@@ -166,12 +177,22 @@ object RequestsBotUpdateManager {
                         listOf(SQLCallback.of(
                             display = ConfigManager.config.general.buttons.confirm,
                             type = "requests",
-                            data = RequestCallback(Operations.CONFIRM_REVOKE_AGREE_WITH_RULES, user.id)
+                            data = RequestCallback(Operations.CONFIRM_REVOKE_AGREE_WITH_RULES, user.id),
+                            canExecute = CallbackCanExecute(
+                                statuses = null,
+                                users = listOf(user.id),
+                                display = "",
+                            ),
                         )),
                         listOf(SQLCallback.of(
                             display = ConfigManager.config.general.buttons.cancel,
                             type = "requests",
-                            data = RequestCallback(Operations.SUCCESS, user.id)
+                            data = RequestCallback(Operations.SUCCESS, user.id),
+                            canExecute = CallbackCanExecute(
+                                statuses = null,
+                                users = listOf(user.id),
+                                display = "",
+                            ),
                         )),
                     ))
                 )
@@ -232,6 +253,11 @@ object RequestsBotUpdateManager {
                             display = config.user.lang.button.cancelRequest,
                             type = "requests",
                             data = RequestCallback(Operations.CANCEL_REQUEST),
+                            canExecute = CallbackCanExecute(
+                                statuses = null,
+                                users = listOf(user.id),
+                                display = "",
+                            ),
                         )
                     )))
                 )
@@ -316,6 +342,11 @@ object RequestsBotUpdateManager {
                             display = config.user.lang.button.cancelRequest,
                             type = "requests",
                             data = RequestCallback(Operations.CANCEL_REQUEST),
+                            canExecute = CallbackCanExecute(
+                                statuses = null,
+                                users = listOf(user.id),
+                                display = "",
+                            ),
                         )
                     )))
                 )
@@ -332,12 +363,12 @@ object RequestsBotUpdateManager {
                         listOf(SQLCallback.of(
                             display = config.forModerator.lang.button.closeRequestVote,
                             type = "requests",
-                            data = RequestCallback(Operations.CLOSE_POLL)
+                            data = RequestCallback(Operations.CLOSE_POLL),
                         )),
                         listOf(SQLCallback.of(
                             display = config.forModerator.lang.button.restrictSender,
                             type = "requests",
-                            data = RequestCallback(Operations.RESTRICT_USER)
+                            data = RequestCallback(Operations.RESTRICT_USER),
                         )),
                     ))
                 )
@@ -369,6 +400,11 @@ object RequestsBotUpdateManager {
                             display = config.user.lang.button.redrawRequest,
                             type = "requests",
                             data = RequestCallback(Operations.REDRAW_REQUEST),
+                            canExecute = CallbackCanExecute(
+                                statuses = null,
+                                users = listOf(user.id),
+                                display = "",
+                            ),
                         )
                     )))
                 )

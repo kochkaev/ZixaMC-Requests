@@ -11,6 +11,7 @@ import ru.kochkaev.zixamc.api.telegram.BotLogic
 import ru.kochkaev.zixamc.api.telegram.model.*
 import ru.kochkaev.zixamc.api.sql.SQLChat
 import ru.kochkaev.zixamc.api.sql.SQLGroup
+import ru.kochkaev.zixamc.api.sql.callback.CallbackCanExecute
 import ru.kochkaev.zixamc.api.sql.callback.TgMenu
 import ru.kochkaev.zixamc.api.sql.chatdata.ChatDataTypes
 import ru.kochkaev.zixamc.api.sql.data.MinecraftAccountType
@@ -29,6 +30,11 @@ object RequestsLogic {
                     display = config.user.lang.button.createRequest,
                     type = "requests",
                     data = RequestsBotUpdateManager.RequestCallback(RequestsBotUpdateManager.Operations.CREATE_REQUEST),
+                    canExecute = CallbackCanExecute(
+                        statuses = null,
+                        users = listOf(user.id),
+                        display = "",
+                    ),
                 )
             )))
         )
@@ -71,6 +77,11 @@ object RequestsLogic {
                     display = config.user.lang.button.createRequest,
                     type = "requests",
                     data = RequestsBotUpdateManager.RequestCallback(RequestsBotUpdateManager.Operations.CREATE_REQUEST),
+                    canExecute = CallbackCanExecute(
+                        statuses = null,
+                        users = listOf(user.id),
+                        display = "",
+                    ),
                 )
             )))
         )
@@ -87,6 +98,11 @@ object RequestsLogic {
                             display = config.user.lang.button.redrawRequest,
                             type = "requests",
                             data = RequestsBotUpdateManager.RequestCallback(RequestsBotUpdateManager.Operations.REDRAW_REQUEST),
+                            canExecute = CallbackCanExecute(
+                                statuses = null,
+                                users = listOf(user.id),
+                                display = "",
+                            ),
                         )
                     )))
                 )
@@ -101,6 +117,11 @@ object RequestsLogic {
                             display = config.user.lang.button.cancelRequest,
                             type = "requests",
                             data = RequestsBotUpdateManager.RequestCallback(RequestsBotUpdateManager.Operations.CANCEL_REQUEST),
+                            canExecute = CallbackCanExecute(
+                                statuses = null,
+                                users = listOf(user.id),
+                                display = "",
+                            ),
                         )
                     )))
                 )
@@ -131,6 +152,11 @@ object RequestsLogic {
                     display = config.user.lang.button.agreeWithRules,
                     type = "requests",
                     data = RequestsBotUpdateManager.RequestCallback(RequestsBotUpdateManager.Operations.AGREE_WITH_RULES),
+                    canExecute = CallbackCanExecute(
+                        statuses = null,
+                        users = listOf(user.id),
+                        display = "",
+                    ),
                 )
             )))
         )

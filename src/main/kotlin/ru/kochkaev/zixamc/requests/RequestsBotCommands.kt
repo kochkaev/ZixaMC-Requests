@@ -11,6 +11,7 @@ import ru.kochkaev.zixamc.api.telegram.model.TgMessage
 import ru.kochkaev.zixamc.requests.RequestsLogic.matchEntityFromUpdateServerPlayerStatusCommand
 import ru.kochkaev.zixamc.api.sql.SQLUser
 import ru.kochkaev.zixamc.api.sql.SQLGroup
+import ru.kochkaev.zixamc.api.sql.callback.CallbackCanExecute
 import ru.kochkaev.zixamc.api.sql.callback.TgMenu
 import ru.kochkaev.zixamc.api.telegram.ServerBot
 import ru.kochkaev.zixamc.api.telegram.model.TgInlineKeyboardMarkup
@@ -194,6 +195,11 @@ object RequestsBotCommands {
                     display = config.user.lang.button.createRequest,
                     type = "requests",
                     data = RequestsBotUpdateManager.RequestCallback(RequestsBotUpdateManager.Operations.CREATE_REQUEST),
+                    canExecute = CallbackCanExecute(
+                        statuses = null,
+                        users = listOf(user.id),
+                        display = "",
+                    ),
                 )
             )))
         )
